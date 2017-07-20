@@ -1,18 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import PokemonData from 'pokemon-metadata';
+import { Card } from 'antd';
+import { Progress } from 'antd';
+import { Input } from 'antd';
+import Pokedex from './Pokedex';
+
+const Search = Input.Search;
+
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      filter: ''
+    }
+  }
+
+  handleInput = (e) => {
+    this.setState({filter: e.target.value})
+  }
+
   render() {
+    const {filter} = this.state;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Search size="large" placeholder="Filter pokemon..." onChange={this.handleInput}/>
+        <Pokedex filter={filter} pokedexMetaData={ PokemonData }/>
       </div>
     );
   }
