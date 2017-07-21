@@ -1,8 +1,5 @@
 import './App.css';
-import React, { Component } from 'react';
-import { Card } from 'antd';
-import { Progress } from 'antd';
-import { Input } from 'antd';
+import React from 'react';
 import PokemonCard  from './PokemonCard.js'
 
 

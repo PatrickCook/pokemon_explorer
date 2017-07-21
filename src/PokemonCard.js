@@ -1,6 +1,8 @@
 import './App.css';
-import React, { Component } from 'react';
-import { Card, Input, Progress, Row, Col} from 'antd';
+import React from 'react';
+import { Card, Progress, Row, Col} from 'antd';
+import { Link } from 'react-router-dom';
+
 
 const PokemonCard = (props) => {
   const {pokemon, index} = props;
@@ -32,18 +34,21 @@ const PokemonCard = (props) => {
       </div>
     );
   }
+
   return (
     <div className="flex-col" key={'pokemon_' + index}>
-      <Card title= { pokemon.name.capitalize() } style={{ width: 400 }} extra={ pokemon.id } key={index}>
+      <Link to={`/detailed/${pokemon.name}`}>
+      <Card title= { pokemon.name.capitalize() } style={{ width: 400, color: 'black'}} extra={ pokemon.id } key={index}>
         <Row>
           <Col span={12}>
-            <img src={ pokemon.sprites.front_default }/>
+            <img src={ pokemon.sprites.front_default } alt="pokemon sprite"/>
           </Col>
           <Col span={12}>
             { getPokemonStats(pokemon) }
           </Col>
         </Row>
       </Card>
+      </Link>
     </div>
   );
 }
